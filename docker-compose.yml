@@ -1,6 +1,11 @@
 services:
   reviews:
     build: .
-    image: ghcr.io/konlawatit/bookinfo-ratings:devi
+    image: ghcr.io/konlawatit/bookinfo-reviews:dev
     ports:
       - "8082:9080"
+    environment:
+      RATINGS_SERVICE: http://ratings:8080
+      ENABLE_RATINGS: "true"
+  # ratings:
+  #   image: ghcr.io/konlawatit/bookinfo-ratings:dev
