@@ -1,0 +1,17 @@
+reviews:
+  namespace: student15-bookinfo-dev
+  image: ghcr.io/konlawatit/bookinfo-reviews
+  tag: dev
+  replicas: 1
+  imagePullSecrets: registry-bookinfo
+  port: 8080
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  host: itkmitl.bookinfo.dev.opsta.net
+  path: "/student15/reviews(/|$)(.*)"
+  serviceType: ClusterIP
+extraEnv:
+  ENABLE_RATINGS: true
+  RATINGS_SERVICE: http://itkmitl.bookinfo.dev.opsta.net/student15/ratings
